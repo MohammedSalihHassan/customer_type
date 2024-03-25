@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="inherit_customer_type_partner_view_form" model="ir.ui.view">
+        <field name="name">inherit.customer.type.partner.view.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="type" position="after">
+                <field name="code"/>
+                <field name="type_id" domain="([('active_type','=',True)])"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="inherit_customer_type_partner_view_tree" model="ir.ui.view">
+        <field name="name">inherit.customer.type.partner.view.tree</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <field name="display_name" position="after">
+                <field name="code"/>
+                <field name="type_id"/>
+            </field>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="customer_type_form_view">
+        <field name="name">customer.type.form.view"</field>
+        <field name="model">customer.type</field>
+        <field name="arch" type="xml">
+            <form string="Customer Type">
+                <sheet>
+                    <group colspan="4" col="4">
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="active_type"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="customer_type_tree_view">
+        <field name="name">customer.type.tree.view</field>
+        <field name="model">customer.type</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="active_type"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="action_view_customer_type">
+        <field name="name">Customer Type</field>
+        <field name="res_model">customer.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem id="menu_item_view_customer_type" parent="contacts.res_partner_menu_config"  name="Customer Type" action="action_view_customer_type"/>
+
+
+    
+</odoo>
